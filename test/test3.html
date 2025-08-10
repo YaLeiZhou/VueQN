@@ -11,14 +11,15 @@
         <input type="text" v-model="inputValue"/>
         <button v-on:click="handleBtnClick">提交</button>
         <ul>
-            <todo-item v-for="item in list"></todo-item>
+            <todo-item v-bind:content="item" v-for="item in list"></todo-item>
         </ul>
     </div>
 
     <script>
-        
+
         Vue.component("TodoItem",{
-            template:"<li>to do list<li/>"
+            props:['content'],
+            template:"<li>{{content}}<li/>"
             }
         )
 
