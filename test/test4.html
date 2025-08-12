@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>TodoList</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+
+</head>
+<body>
+    <div id="app">
+        <input type="text" v-model="inputValue"/>
+        <button v-on:click="handleBtnClick">提交</button>
+        <ul>
+            <todo-item v-bind:content="item"
+                       v-bind:index="index"
+                       v-for="(item,index) in list"
+                       @delete="handelItemDelete">
+
+            </todo-item>
+        </ul>
+    </div>
+
+    <script>
+
+        // Vue.component("TodoItem",{
+        //     props:['content'],
+        //     template:"<li>{{content}}<li/>"
+        //     }
+        // )
+
+        var TodoItem= {
+            props: ['content','index'],
+            // template: "<li v-on:click=''>{{content}}<li/>"
+            template: "<li @click='handelItemClick'>{{content}}<li/>",
+            methods:{
+                handelItemClick:function (){
+                    // alert("click")
+                    this.$emit("delete",this.index)
+                }
+            }
+
+        }
+
+        new Vue({
+            el:'#app',
+            data:{
+                list:['第一课内容','第二课内容','第三课内容'],
+                inputValue:''
+            },
+            components:{
+                TodoItem:TodoItem
+            },
+            methods:{
+                handleBtnClick:function (){
+                    this.list.push(this.inputValue)
+                    this.inputValue=''
+                    // alert('click')
+                },
+                handelItemDelete:function (index){
+
+                   //alert(index)
+                    this.list.splice(index,1)
+                }
+            }
+        })
+    </script>
+</body>
+</html>
