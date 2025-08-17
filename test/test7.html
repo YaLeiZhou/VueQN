@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>模版语法</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+
+</head>
+<body>
+    <div id="app">{{name}}</div>
+    <div id="app2">
+        <div>{{name}}</div>
+        <div v-text="name"></div>
+        <div v-html="name"></div>
+    </div>
+    <div id="app3">
+        <div>{{name+' Wis'}}</div>
+        <div v-text="name +' Wis'"></div>
+        <div v-html="name +' Wis'"></div>
+    </div>
+
+    <script>
+        var vm=new Vue({
+            el:"#app",
+            data:{
+                name:"hello world"
+            }
+        })
+
+        var vm2=new Vue({
+            el:"#app2",
+            data:{
+                name:"<h1>Bye</h1>"
+            }
+        })
+
+        var vm3=new Vue({
+            el:"#app3",
+            data:{
+                name:"Lee"
+            }
+        })
+    </script>
+</body>
+</html>
